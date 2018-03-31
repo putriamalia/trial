@@ -1,0 +1,15 @@
+<div class="wrapper"> 
+    <!-- data-color : red, orange, blue, azure, green, purple -->
+    <div class="sidebar" data-color="azure" data-image="" *ngIf="isUserLoggedIn()">
+        <app-sidebar></app-sidebar>
+        <div class="sidebar-background" style="background-image: url(/assets/img/Logo.png)"></div>
+    </div>
+
+    <div [ngClass]="{'main-panel':isUserLoggedIn()}">
+        <navbar-cmp *ngIf="isUserLoggedIn()"></navbar-cmp>
+        <router-outlet></router-outlet>
+        <!-- <div *ngIf="isMap('maps')">
+            <footer-cmp></footer-cmp>
+        </div> -->
+    </div>
+</div>

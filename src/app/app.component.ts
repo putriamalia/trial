@@ -1,0 +1,33 @@
+import { Component, OnInit } from '@angular/core';
+import { LocationStrategy, PlatformLocation, Location } from '@angular/common';
+import { UserService } from './user.service';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent implements OnInit {
+
+    constructor(public location: Location, public user: UserService) {}
+
+    ngOnInit(){
+      if (location.pathname === '/login'){
+        localStorage.clear();
+      }
+    }
+
+    isMap(path){
+      let titlee = this.location.prepareExternalUrl(this.location.path());
+      titlee = titlee.slice( 1 );
+      if(path === titlee){
+        return false;
+      } else {
+        return true;
+      }
+    }
+
+    isUserLoggedIn(){
+      return this.user.getUserLoggedIn();
+    }
+}
